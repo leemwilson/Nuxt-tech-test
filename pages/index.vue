@@ -1,18 +1,21 @@
 <template>
   <div class="flex flex-col">
     <RecentlyViewed v-if="hasRecentlyViewed" />
-    <div class="flex flex-row">
-    <MoviesFeaturedMovies class="w-1/2 pr-4" />
-    <SeriesFeaturedSeries class="w-1/2 pl-4" />
+    <div class="flex flex-col md:flex-row">
+    <Featured
+      class="w-full md:w-1/2 pr-4" 
+      mediaType="movie"
+    />
+    <Featured
+      class="w-full md:w-1/2 pl-4" 
+      mediaType="series"
+    />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import RecentlyViewed from '@/components/RecentlyViewed.vue'
-import MoviesFeaturedMovies from '@/components/Movies/FeaturedMovies.vue'
-import SeriesFeaturedSeries from '@/components/Series/FeaturedSeries.vue'
 
 const hasRecentlyViewed = ref(false)
 

@@ -1,5 +1,5 @@
 <template>
-  <header class="flex flex-col sticky top-0 items-center bg-light dark:bg-dark py-8 text-dark dark:text-light border-b-2 w-full select-none">
+  <header class="flex flex-col sticky top-0 items-center bg-light dark:bg-dark py-8 text-dark dark:text-light border-b-2 w-full select-none z-50">
     <ThemeToggle />
 
     <!-- Logo Placeholder -->
@@ -9,7 +9,7 @@
           <img 
             src="/images/logo.png" 
             alt="Logo" 
-            class="w-[120px] object-contain" 
+            class="w-[80px] md:w-[120px] object-contain" 
           />
         </div>
       </NuxtLink>

@@ -6,7 +6,7 @@
       class="w-full md:w-64 h-auto object-cover rounded p-2"
     />
 
-    <div class="flex-1 p-8">
+    <div class="flex-1 pt-0 md:pt-8 p-8">
       <h1 class="text-3xl font-bold mb-2 text-light dark:text-dark">{{ movie.Title }}</h1>
       <p class="text-gray-400 dark:text-gray-600 mb-1"><strong>Year:</strong> {{ movie.Year }}</p>
       <p class="text-gray-400 dark:text-gray-600 mb-1"><strong>Genre:</strong> {{ movie.Genre }}</p>

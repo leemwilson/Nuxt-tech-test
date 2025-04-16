@@ -4,7 +4,7 @@
 
     <div class="min-h-screen bg-light text-dark dark:bg-dark dark:text-light transition-colors duration-300">
       <Header />
-      <main class="px-32 select-none pb-10">
+      <main class="px-8 md:px-16 lg:px-32 select-none pb-10">
         <slot />
       </main>
     </div>
