@@ -1,5 +1,6 @@
 <template>
-  <div class="p-4">
-    <h1 class="text-2xl font-bold">Hello Nuxt 3 + Tailwind!</h1>
+  <div class="flex flex-row">
+    <MoviesFeaturedMovies class="w-1/2 pr-4" />
+    <SeriesFeaturedSeries class="w-1/2 pl-4" />
   </div>
 </template>
