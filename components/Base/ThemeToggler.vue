@@ -15,7 +15,7 @@
     >
       <span
         class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"
-        :class="{ 'translate-x-6': isDark }"
+        :class="{ 'translate-x-4': isDark }"
       ></span>
     </button>
 
