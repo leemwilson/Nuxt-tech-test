@@ -1,0 +1,19 @@
+# Build & dependencies
+node_modules/
+.nuxt/
+dist/
+
+# Environment variables
+.env
+.env.*.local
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+
+# OS & editor junk
+.DS_Store
+Thumbs.db
+
+# VS Code settings (optional)
+.vscode/

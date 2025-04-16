@@ -1,3 +1,7 @@
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
-  css: ['@/assets/css/tailwind.css']
+  modules: ['@nuxtjs/tailwindcss'],
+  css: ['@fortawesome/fontawesome-free/css/all.min.css'],
+  compatibilityDate: '2025-04-14'
 })
