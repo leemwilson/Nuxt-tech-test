@@ -8,7 +8,7 @@
         <label class="block font-semibold mb-1">Full Name *</label>
         <input
           v-model.trim="form.fullName"
-          class="w-full p-2 border rounded focus:outline"
+          class="w-full p-2 border rounded focus:outline text-dark"
           :class="[
             errors.fullName ? 'border-red-500' : 'border-gray-300'
           ]"
@@ -21,7 +21,7 @@
         <input
           v-model.trim="form.email"
           type="email"
-          class="w-full p-2 border rounded focus:outline"
+          class="w-full p-2 border rounded focus:outline text-dark"
           :class="[
             errors.email ? 'border-red-500' : 'border-gray-300'
           ]"
@@ -34,7 +34,7 @@
         <input
           v-model.trim="form.phone"
           type="tel"
-          class="w-full p-2 border rounded border-gray-300 focus:outline"
+          class="w-full p-2 border rounded border-gray-300 focus:outline text-dark"
         />
       </div>
 
@@ -44,7 +44,7 @@
         <textarea
           v-model.trim="form.message"
           rows="5"
-          class="w-full p-2 border rounded focus:outline"
+          class="w-full p-2 border rounded focus:outline text-dark"
           :class="[
             errors.message ? 'border-red-500' : 'border-gray-300'
           ]"
@@ -91,7 +91,7 @@ const errors = reactive({
 const toast = ref({ show: false, message: '', success: true })
 
 const validate = () => {
-  const fullNameValid = form.fullName !== ''
+  const fullNameValid = /^[A-Za-z\s'-]+$/.test(form.fullName)
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
   const messageValid = form.message !== ''
 
@@ -125,6 +125,10 @@ const handleSubmit = () => {
   if (isValid) {
     showToast('Form submitted successfully!', true)
     resetForm()
+  } else if (errors.fullName) {
+    showToast('Please make sure to enter a valid name, numbers are not allowed.', false)
+  } else if (errors.email) {
+    showToast('Please make sure to enter a valid email.', false)
   } else {
     showToast('Please make sure all mandatory fields are filled correctly.', false)
   }

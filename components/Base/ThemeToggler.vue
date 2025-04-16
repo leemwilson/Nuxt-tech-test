@@ -1,8 +1,13 @@
 <template>
   <div
-    class="absolute top-4 left-4 flex items-center gap-3 border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 dark:bg-gray-800 shadow-md w-40 cursor-pointer select-none"
+    class="absolute top-4 left-4 flex items-center gap-3 border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 dark:bg-gray-800 shadow-md md:w-40 cursor-pointer select-none"
   >
-    <span :class="{ 'text-black': !isDark, 'text-white': isDark }">Light</span>
+    <span 
+      class="hidden md:block"
+      :class="{ 'text-black': !isDark, 'text-white': isDark }"
+    >
+      Light
+    </span>
 
     <button
       @click="toggleTheme"
@@ -14,7 +19,12 @@
       ></span>
     </button>
 
-    <span :class="{ 'text-white': isDark, 'text-black': !isDark }">Dark</span>
+    <span 
+      class="hidden md:block"
+      :class="{ 'text-white': isDark, 'text-black': !isDark }"
+    >
+      Dark
+    </span>
   </div>
 </template>
 
