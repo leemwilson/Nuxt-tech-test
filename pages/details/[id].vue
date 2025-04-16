@@ -26,13 +26,13 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useOmdb } from '@/composables/useOmdb'
+import type { OmdbMovieDetails  } from '@/composables/useOmdb'
 import BaseLoader from '@/components/Base/Loader.vue'
 import MovieDetails from '@/components/MovieDetails.vue'
 
 const { getDetails } = useOmdb()
 const route = useRoute()
-
-const movie = ref<any>(null)
+const movie = ref<OmdbMovieDetails | null>(null)
 const loading = ref(true)
 
 const goBack = () => {
@@ -46,11 +46,31 @@ const goBack = () => {
 onMounted(async () => {
   try {
     const id = route.params.id as string
-    movie.value = await getDetails(id)
+    const result = await getDetails(id) as OmdbMovieDetails
+
+    if (result) {
+      movie.value = result as OmdbMovieDetails
+
+      // Save movies/series to localstorage
+      const stored = localStorage.getItem('recentlyViewed')
+
+      const viewed = (stored ? JSON.parse(stored) : []) as OmdbMovieDetails[]
+      
+      const exists = viewed.find((m: any) => m.imdbID === result.imdbID)
+      if (!exists) {
+        viewed.unshift(result)
+
+        // Limit to 8 max
+        const limited = viewed.slice(0, 8)
+
+        localStorage.setItem('recentlyViewed', JSON.stringify(limited))
+      }
+    }
   } catch (err) {
     console.error('Failed to fetch movie details', err)
   } finally {
     loading.value = false
   }
 })
+
 </script>

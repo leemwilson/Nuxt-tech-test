@@ -9,6 +9,20 @@ export interface OmdbSearchItem {
   Poster: string
 }
 
+// in composables/useOmdb.ts or types/omdb.ts
+export interface OmdbMovieDetails {
+  Title: string
+  Year: string
+  imdbID: string
+  Poster: string
+  Genre: string
+  Plot: string
+  Director: string
+  Actors: string
+  Ratings: { Source: string; Value: string }[]
+  [key: string]: any // catch-all for extra fields
+}
+
 interface OmdbSearchResponse {
   Search: OmdbSearchItem[];
   totalResults: string;
