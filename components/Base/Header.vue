@@ -1,10 +1,18 @@
 <template>
-  <header class="flex flex-col items-center py-8 text-white bg-black">
+  <header class="flex flex-col sticky top-0 items-center bg-light dark:bg-dark py-8 text-dark dark:text-light border-b-2 w-full select-none">
+    <ThemeToggle />
+
     <!-- Logo Placeholder -->
     <div class="mb-6">
-      <div class="bg-gray-800 flex items-center justify-center rounded">
-        <img src="/images/logo.png" alt="Logo" class="w-[200px] object-contain" />
-      </div>
+      <NuxtLink to="/" class="hover:text-gray-400 transition">
+        <div class="bg-gray-800 flex items-center justify-center rounded">
+          <img 
+            src="/images/logo.png" 
+            alt="Logo" 
+            class="w-[120px] object-contain" 
+          />
+        </div>
+      </NuxtLink>
     </div>
 
     <!-- Navigation -->
@@ -16,7 +24,7 @@
         <!-- Add separator unless it's the last link -->
         <span
           v-if="index < navLinks.length - 1"
-          class="flex justify-center text-white"
+          class="flex justify-center text-dark dark:text-light"
         >
           <i class="fas fa-circle text-[8px] mx-2"></i>
         </span>
@@ -26,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import ThemeToggle from './ThemeToggler.vue'
+
 const navLinks = [
   { label: 'Movies', to: '/movies' },
   { label: 'Series', to: '/series' },
