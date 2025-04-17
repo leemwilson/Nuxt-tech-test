@@ -1,3 +1,4 @@
+<!-- Feature section on homepage -->
 <template>
   <div class="flex flex-col p-4">
     <h2 class="text-2xl font-bold mb-4">
@@ -5,12 +6,18 @@
     </h2>
 
     <!-- Loader -->
-    <div v-if="loading" class="py-4 flex justify-center">
+    <div 
+      v-if="loading" 
+      class="py-4 flex justify-center"
+    >
       <BaseLoader />
     </div>
 
     <!-- Grid -->
-    <div v-else class="grid grid-cols-1 lg:grid-cols-2">
+    <div 
+      v-else 
+      class="grid grid-cols-1 lg:grid-cols-2"
+    >
       <MovieCard 
         v-for="item in featured" 
         :key="item.imdbID" 
@@ -36,6 +43,7 @@ const props = defineProps<{
 const loading = ref(true)
 const { search } = useOmdb()
 
+// Returns search results for featured, set currently to dragon ball
 onMounted(async () => {
   try {
     const { results: searchResults } = await search('dragon ball', props.mediaType)

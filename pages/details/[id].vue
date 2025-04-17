@@ -10,15 +10,26 @@
     </button>
 
     <!-- Loader -->
-    <div v-if="loading" class="text-center text-gray-500 py-10">
+    <div 
+      v-if="loading" 
+      class="text-center text-gray-500 py-10"
+    >
       <BaseLoader />
     </div>
 
     <!-- Movie -->
-    <MovieDetails v-else-if="movie" :movie="movie" />
+    <MovieDetails 
+      v-else-if="movie" 
+      :movie="movie" 
+    />
 
     <!-- Not found -->
-    <div v-else class="text-center text-red-500">Movie not found.</div>
+    <div 
+      v-else 
+      class="text-center text-red-500"
+    >
+      Movie not found.
+    </div>
   </div>
 </template>
 
@@ -35,8 +46,7 @@ const { getDetails } = useOmdb()
 const route = useRoute()
 const movie = ref<OmdbMovieDetails | null>(null)
 const loading = ref(true)
-
-const viewedMoviesStore = useRecentlyViewed() // 👉 grab the Pinia store
+const viewedMoviesStore = useRecentlyViewed()
 
 const goBack = () => {
   if (window.history.length > 1) {
@@ -46,6 +56,7 @@ const goBack = () => {
   }
 }
 
+// Gets details for selected movie/series from composable
 onMounted(async () => {
   try {
     const id = route.params.id as string
@@ -54,11 +65,11 @@ onMounted(async () => {
     if (result) {
       movie.value = result
 
-      // 👉 Instead of localStorage manually, just add to store
+      // Adds to Pinia store
       viewedMoviesStore.addMovie(result)
     }
   } catch (err) {
-    console.error('Failed to fetch movie details', err)
+    console.error('Failed to fetch movie/series details', err)
   } finally {
     loading.value = false
   }

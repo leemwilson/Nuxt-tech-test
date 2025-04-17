@@ -1,15 +1,25 @@
+<!-- Show search results -->
 <template>
   <div class="p-4">
     <h1 class="text-3xl font-bold mb-6 text-center">
       Browse {{ mediaType === 'movie' ? 'Movies' : 'Series' }}
     </h1>
 
-    <BaseSearchBar @submit="handleSearch" class="text-black" />
+    <BaseSearchBar 
+      @submit="handleSearch" 
+      class="text-black" 
+    />
 
-    <div v-if="loading" class="text-center py-6 text-gray-500">
+    <div 
+      v-if="loading" 
+      class="text-center py-6 text-gray-500"
+    >
       <BaseLoader />
     </div>
-    <div v-else-if="error" class="text-center py-6 text-red-500 font-bold">
+    <div 
+      v-else-if="error" `
+      class="text-center py-6 text-red-500 font-`bold"
+    >
       {{ error }}
     </div>
 
@@ -31,7 +41,10 @@
       :totalPages="totalPages"
     />
 
-    <div v-else-if="!loading && !error" class="text-center py-6 text-gray-400">
+    <div 
+      v-else-if="!loading && !error" 
+      class="text-center py-6 text-gray-400"
+    >
       Start searching to see results.
     </div>
   </div>
@@ -50,12 +63,12 @@ const { search } = useOmdb()
 
 const results = ref<OmdbSearchItem[]>([])
 const totalPages = ref(0)
-const totalResults = ref(0) // optional if you also want total results
 const loading = ref(false)
 const error = ref('')
 const searchQuery = ref('')
 const currentPage = ref(1)
 
+// Returns search results for currently query, grabs type form props.mediaType
 const handleSearch = async (query: string, page = 1) => {
   loading.value = true
   error.value = ''

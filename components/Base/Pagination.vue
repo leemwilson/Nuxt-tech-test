@@ -1,5 +1,7 @@
+<!-- Page pagination -->
 <template>
   <div class="flex justify-center mt-6 space-x-2">
+    <!-- Back to 1st page -->
     <button
       class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
       :disabled="currentPage === 1"
@@ -9,6 +11,7 @@
       <FontAwesomeIcon icon="angle-double-left" />
     </button>
 
+    <!-- Back 1 page -->
     <button
       class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
       :disabled="currentPage === 1"
@@ -22,6 +25,7 @@
       {{ currentPage }} of {{ totalPages }}
     </span>
 
+    <!-- Forward 1 page -->
     <button
       class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
       :disabled="currentPage === totalPages"
@@ -31,6 +35,7 @@
       <FontAwesomeIcon icon="chevron-right" />
     </button>
 
+    <!-- Forward to last page -->
     <button
       class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
       :disabled="currentPage === totalPages"

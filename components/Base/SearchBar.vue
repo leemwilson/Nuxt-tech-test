@@ -1,3 +1,4 @@
+<!-- Search bar -->
 <template>
   <form @submit.prevent="onSearch" class="flex items-center gap-2 w-full max-w-xl mx-auto">
     <input

@@ -2,7 +2,11 @@
   <div class="p-4 max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center">Contact Us</h1>
 
-    <form @submit.prevent="handleSubmit" class="space-y-4" novalidate>
+    <form 
+      @submit.prevent="handleSubmit" 
+      class="space-y-4" 
+      validate
+    >
       <!-- Full Name -->
       <div>
         <label class="block font-semibold mb-1">Full Name *</label>
@@ -90,6 +94,7 @@ const errors = reactive({
 
 const toast = ref({ show: false, message: '', success: true })
 
+// General validation for contact form, could do with being more refined with time
 const validate = () => {
   const fullNameValid = /^[A-Za-z\s'-]+$/.test(form.fullName)
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
@@ -102,6 +107,7 @@ const validate = () => {
   return fullNameValid && emailValid && messageValid
 }
 
+// Resets form on successful submit
 const resetForm = () => {
   form.fullName = ''
   form.email = ''
@@ -112,6 +118,7 @@ const resetForm = () => {
   errors.message = false
 }
 
+// Shows overlay bottom right for success/failure
 const showToast = (message: string, success = true) => {
   toast.value = { show: true, message, success }
   setTimeout(() => {
@@ -119,6 +126,7 @@ const showToast = (message: string, success = true) => {
   }, 3000)
 }
 
+// Handles dummy subm
 const handleSubmit = () => {
   const isValid = validate()
 

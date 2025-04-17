@@ -1,3 +1,4 @@
+<!-- Details page for movie/series -->
 <template>
   <div class="flex flex-col md:flex-row gap-6 border rounded bg-dark dark:bg-light">
     <img

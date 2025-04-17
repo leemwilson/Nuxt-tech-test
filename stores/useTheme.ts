@@ -18,7 +18,6 @@ export const useTheme = defineStore('theme', {
 
       document.documentElement.classList.toggle('dark', this.isDark)
 
-      // Save to localStorage for next load
       localStorage.setItem('theme', this.isDark ? 'dark' : 'light')
     },
 

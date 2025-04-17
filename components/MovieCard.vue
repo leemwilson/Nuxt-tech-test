@@ -1,3 +1,4 @@
+<!-- Movie card for viewing in search results/featured -->
 <template>
   <NuxtLink
     :to="`/details/${movie.imdbID}`"

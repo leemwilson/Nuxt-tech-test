@@ -1,3 +1,4 @@
+<!-- Recently viewed shown at top of homepage -->
 <template>
   <div v-if="viewedMoviesStore.viewed.length" class="mt-8">
     <h3 class="text-xl font-bold mb-4">Recently Viewed</h3>

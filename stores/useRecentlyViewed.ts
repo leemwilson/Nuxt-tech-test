@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+// Contains data for recently viewed to persist through refresh
 export const useRecentlyViewed = defineStore('viewedMovies', {
   state: () => ({
     viewed: [] as any[]
@@ -14,5 +15,5 @@ export const useRecentlyViewed = defineStore('viewedMovies', {
     }
   },
 
-  persist: true  // <-- this automatically saves to and loads from localStorage
+  persist: true
 })

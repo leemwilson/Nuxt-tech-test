@@ -1,3 +1,4 @@
+<!-- Full page loader used on initial load -->
 <template>
   <div
     id="theme-loader"

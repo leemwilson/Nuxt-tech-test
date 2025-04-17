@@ -1,3 +1,4 @@
+<!-- General loader used throughout app -->
 <template>
   <div
     class="inline-flex items-center justify-center"

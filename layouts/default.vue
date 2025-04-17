@@ -20,6 +20,7 @@ import ThemeLoader from '@/components/Base/LoaderOverlay.vue'
 const themeStore = useTheme()
 const showLoader = ref(true)
 
+// Loads the initial state for theme
 onMounted(() => {
   themeStore.initTheme()
 

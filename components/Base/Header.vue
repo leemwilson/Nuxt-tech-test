@@ -4,7 +4,10 @@
 
     <!-- Logo Placeholder -->
     <div class="mb-6">
-      <NuxtLink to="/" class="hover:text-gray-400 transition">
+      <NuxtLink 
+        to="/" 
+        class="hover:text-gray-400 transition"
+      >
         <div class="bg-gray-800 flex items-center justify-center rounded">
           <img 
             src="/images/logo.png" 
@@ -17,11 +20,17 @@
 
     <!-- Navigation -->
     <nav class="text-xl font-bold flex items-center space-x-4">
-      <template v-for="(link, index) in navLinks" :key="link.to">
-        <NuxtLink :to="link.to" class="hover:text-gray-400 transition">
+      <template 
+        v-for="(link, index) in navLinks" 
+        :key="link.to"
+      >
+        <NuxtLink 
+          :to="link.to" 
+          class="hover:text-gray-400 transition"
+        >
           {{ link.label }}
         </NuxtLink>
-        <!-- Add separator unless it's the last link -->
+        <!-- Separator for all but last link -->
         <span
           v-if="index < navLinks.length - 1"
           class="flex justify-center text-dark dark:text-light"
