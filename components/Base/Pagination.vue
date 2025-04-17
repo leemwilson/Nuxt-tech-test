@@ -19,7 +19,7 @@
     </button>
 
     <span class="px-4 py-2 font-semibold text-gray-800 dark:text-gray-100">
-      {{ currentPage }}
+      {{ currentPage }} of {{ totalPages }}
     </span>
 
     <button
@@ -31,7 +31,6 @@
       <FontAwesomeIcon icon="chevron-right" />
     </button>
 
-    <!-- This is hidden for now as the Omdb returns can be huge and no mechanism to know exactly how many pages
     <button
       class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
       :disabled="currentPage === totalPages"
@@ -39,9 +38,7 @@
       aria-label="Last Page"
     >
       <FontAwesomeIcon icon="angle-double-right" />
-    </button>
-    -->
-    
+    </button>    
   </div>
 </template>
 

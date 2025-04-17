@@ -11,20 +11,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useTheme } from '@/stores/useTheme'
 import Header from '@/components/Base/Header.vue'
 import ThemeLoader from '@/components/Base/LoaderOverlay.vue'
 
+const themeStore = useTheme()
 const showLoader = ref(true)
 
 onMounted(() => {
-  const storedTheme = localStorage.theme
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const shouldUseDark = storedTheme === 'dark' || (!storedTheme && prefersDark)
-  document.documentElement.classList.toggle('dark', shouldUseDark)
+  themeStore.initTheme()
 
-  // Hide loader after transition
   setTimeout(() => {
     showLoader.value = false
   }, 600)

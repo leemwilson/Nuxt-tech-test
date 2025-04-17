@@ -4,24 +4,24 @@
   >
     <span 
       class="hidden md:block"
-      :class="{ 'text-black': !isDark, 'text-white': isDark }"
+      :class="{ 'text-black': !themeStore.isDark, 'text-white': themeStore.isDark }"
     >
       Light
     </span>
 
     <button
-      @click="toggleTheme"
+      @click="themeStore.toggleTheme"
       class="relative w-12 h-6 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors duration-300"
     >
       <span
         class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"
-        :class="{ 'translate-x-4': isDark }"
+        :class="{ 'translate-x-4': themeStore.isDark }"
       ></span>
     </button>
 
     <span 
       class="hidden md:block"
-      :class="{ 'text-white': isDark, 'text-black': !isDark }"
+      :class="{ 'text-white': themeStore.isDark, 'text-black': !themeStore.isDark }"
     >
       Dark
     </span>
@@ -29,20 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { useTheme } from '@/stores/useTheme'
 
-const isDark = ref(false)
-
-onMounted(() => {
-  isDark.value =
-    localStorage.theme === 'dark' ||
-    (!localStorage.theme &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
-})
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-  document.documentElement.classList.toggle('dark', isDark.value)
-  localStorage.theme = isDark.value ? 'dark' : 'light'
-}
+const themeStore = useTheme()
 </script>

@@ -35,7 +35,15 @@ export const useOmdb = () => {
     const res = await $fetch<OmdbSearchResponse>(
       `${OMDB_BASE_URL}?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(query)}&type=${type}&page=${page}`
     )
-    return res.Search ?? []
+
+    const totalResults = res.totalResults ? parseInt(res.totalResults) : 0
+    const totalPages = Math.ceil(totalResults / 10) // Calculates totla pages as totalResults is returned form Omdb
+
+    return {
+      results: res.Search ?? [],
+      totalResults,
+      totalPages
+    }
   }
 
   const getDetails = async (id: string) => {

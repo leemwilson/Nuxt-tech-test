@@ -28,6 +28,7 @@
       v-if="results.length && !loading" 
       :current-page="currentPage" 
       @update:page="(page: number) => handleSearch(searchQuery, page)"
+      :totalPages="totalPages"
     />
 
     <div v-else-if="!loading && !error" class="text-center py-6 text-gray-400">
@@ -48,6 +49,8 @@ const props = defineProps<{
 const { search } = useOmdb()
 
 const results = ref<OmdbSearchItem[]>([])
+const totalPages = ref(0)
+const totalResults = ref(0) // optional if you also want total results
 const loading = ref(false)
 const error = ref('')
 const searchQuery = ref('')
@@ -60,7 +63,10 @@ const handleSearch = async (query: string, page = 1) => {
   currentPage.value = page
 
   try {
-    results.value = await search(query, props.mediaType, page)
+    const { results: searchResults, totalPages: pages } = await search(query, props.mediaType, page)
+
+    results.value = searchResults
+    totalPages.value = pages
   } catch (err: any) {
     console.error(err)
     error.value = 'Something went wrong while fetching results.'
@@ -68,4 +74,5 @@ const handleSearch = async (query: string, page = 1) => {
     loading.value = false
   }
 }
+
 </script>

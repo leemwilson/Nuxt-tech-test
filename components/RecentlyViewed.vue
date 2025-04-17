@@ -1,5 +1,5 @@
 <template>
-  <div v-if="recentlyViewed.length" class="mt-8">
+  <div v-if="viewedMoviesStore.viewed.length" class="mt-8">
     <h3 class="text-xl font-bold mb-4">Recently Viewed</h3>
 
     <div class="relative">
@@ -32,7 +32,7 @@
         class="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[60%] md:auto-cols-[33%] gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide lg:auto-cols-[25%] xl:grid-cols-8 xl:overflow-x-visible xl:auto-cols-auto"
       >
         <MovieCard 
-          v-for="movie in recentlyViewed" 
+          v-for="movie in viewedMoviesStore.viewed" 
           :key="movie.imdbID" 
           :movie="movie" 
           class="snap-start"
@@ -42,22 +42,17 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useRecentlyViewed } from '@/stores/useRecentlyViewed'
 
-const recentlyViewed = ref<any[]>([])
+const viewedMoviesStore = useRecentlyViewed()
 const scrollContainer = ref<HTMLDivElement | null>(null)
 
 const canScrollLeft = ref(false)
 const canScrollRight = ref(false)
 
 onMounted(() => {
-  const stored = localStorage.getItem('recentlyViewed')
-  if (stored) {
-    recentlyViewed.value = JSON.parse(stored)
-  }
-  // Wait for DOM render
   setTimeout(updateScrollState, 100)
 })
 

@@ -26,7 +26,8 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useOmdb } from '@/composables/useOmdb'
-import type { OmdbMovieDetails  } from '@/composables/useOmdb'
+import { useRecentlyViewed } from '@/stores/useRecentlyViewed'
+import type { OmdbMovieDetails } from '@/composables/useOmdb'
 import BaseLoader from '@/components/Base/Loader.vue'
 import MovieDetails from '@/components/MovieDetails.vue'
 
@@ -35,13 +36,15 @@ const route = useRoute()
 const movie = ref<OmdbMovieDetails | null>(null)
 const loading = ref(true)
 
+const viewedMoviesStore = useRecentlyViewed() // 👉 grab the Pinia store
+
 const goBack = () => {
   if (window.history.length > 1) {
     window.history.back()
   } else {
     navigateTo('/') // fallback route if direct-linked
   }
-} 
+}
 
 onMounted(async () => {
   try {
@@ -49,22 +52,10 @@ onMounted(async () => {
     const result = await getDetails(id) as OmdbMovieDetails
 
     if (result) {
-      movie.value = result as OmdbMovieDetails
+      movie.value = result
 
-      // Save movies/series to localstorage
-      const stored = localStorage.getItem('recentlyViewed')
-
-      const viewed = (stored ? JSON.parse(stored) : []) as OmdbMovieDetails[]
-      
-      const exists = viewed.find((m: any) => m.imdbID === result.imdbID)
-      if (!exists) {
-        viewed.unshift(result)
-
-        // Limit to 8 max
-        const limited = viewed.slice(0, 8)
-
-        localStorage.setItem('recentlyViewed', JSON.stringify(limited))
-      }
+      // 👉 Instead of localStorage manually, just add to store
+      viewedMoviesStore.addMovie(result)
     }
   } catch (err) {
     console.error('Failed to fetch movie details', err)
@@ -72,5 +63,4 @@ onMounted(async () => {
     loading.value = false
   }
 })
-
 </script>

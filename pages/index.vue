@@ -15,19 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { computed } from 'vue'
+import { useRecentlyViewed } from '@/stores/useRecentlyViewed'
 
-const hasRecentlyViewed = ref(false)
+const viewedMoviesStore = useRecentlyViewed()
 
-onMounted(() => {
-  const stored = localStorage.getItem('recentlyViewed')
-  if (stored) {
-    try {
-      const parsed = JSON.parse(stored)
-      hasRecentlyViewed.value = Array.isArray(parsed) && parsed.length > 0
-    } catch (e) {
-      console.warn('Failed to parse recently viewed:', e)
-    }
-  }
-})
+const hasRecentlyViewed = computed(() => viewedMoviesStore.viewed.length > 0)
 </script>

@@ -38,12 +38,13 @@ const { search } = useOmdb()
 
 onMounted(async () => {
   try {
-    // 💡 fixed query: 'pokemon' — mediaType determines if it's a movie or series
-    featured.value = await search('pokemon', props.mediaType)
+    const { results: searchResults } = await search('dragon ball', props.mediaType)
+    featured.value = searchResults
   } catch (e) {
     console.error(`Failed to fetch featured ${props.mediaType}s:`, e)
   } finally {
     loading.value = false
   }
 })
+
 </script>
