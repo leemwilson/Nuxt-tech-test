@@ -19,7 +19,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="text-xl font-bold flex items-center space-x-4">
+    <nav class="text-xl font-bold flex flex-wrap w-2/3 md:w-auto justify-around items-center md:space-x-4">
       <template 
         v-for="(link, index) in navLinks" 
         :key="link.to"
@@ -33,7 +33,7 @@
         <!-- Separator for all but last link -->
         <span
           v-if="index < navLinks.length - 1"
-          class="flex justify-center text-dark dark:text-light"
+          class="flex justify-center text-dark dark:text-light hidden md:block"
         >
           <i class="fas fa-circle text-[8px] mx-2"></i>
         </span>
