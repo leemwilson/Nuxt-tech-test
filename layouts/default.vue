@@ -12,16 +12,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useTheme } from '@/stores/useTheme'
 import Header from '@/components/Base/Header.vue'
 import ThemeLoader from '@/components/Base/LoaderOverlay.vue'
 
-const themeStore = useTheme()
 const showLoader = ref(true)
+let themeStore: ReturnType<typeof useTheme>
 
-// Loads the initial state for theme
 onMounted(() => {
+  themeStore = useTheme()
   themeStore.initTheme()
 
   setTimeout(() => {
