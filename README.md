@@ -32,7 +32,7 @@ A Nuxt 3 application to search and explore movies and series using the OMDb API.
 ### 📦 Installation
 
 ```bash
-git clone https://github.com/leemwilson/Nuxt-tech-test.git
+git clone https://github.com/leemwilson/nuxt-tech-test.git
 cd Nuxt-tech-test
 npm install
 npm run dev
