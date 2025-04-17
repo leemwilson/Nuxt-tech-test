@@ -43,3 +43,14 @@ cd nuxt-tech-test
 npm install
 npm run dev
 ```
+
+### 🚀 Production Build
+
+To create a production-ready build:
+
+```bash
+git clone https://github.com/leemwilson/nuxt-tech-test.git
+cd nuxt-tech-test
+npm install
+npm run build
+npm run preview
