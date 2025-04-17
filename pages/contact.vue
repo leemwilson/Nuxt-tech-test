@@ -57,6 +57,7 @@
 
       <button
         type="submit"
+        aria-label="Submit Contact Form"
         class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded w-full"
       >
         Submit

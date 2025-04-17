@@ -29,11 +29,17 @@ A Nuxt 3 application to search and explore movies and series using the OMDb API.
 - [Node.js](https://nodejs.org/) v16 or later
 - [npm](https://www.npmjs.com/)
 
+### 🔑 Notes
+
+- The OMDb API key is already built into the project.
+- No additional setup is needed to make API requests.
+- Form submission is spoofed for the contact page, no backend required.
+
 ### 📦 Installation
 
 ```bash
 git clone https://github.com/leemwilson/nuxt-tech-test.git
-cd Nuxt-tech-test
+cd nuxt-tech-test
 npm install
 npm run dev
 ```

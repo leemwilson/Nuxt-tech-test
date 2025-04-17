@@ -12,6 +12,7 @@
 
     <button
       @click="themeStore.toggleTheme"
+      aria-label="Theme toggle button"
       class="relative w-12 h-6 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors duration-300"
     >
       <span

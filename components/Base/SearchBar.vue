@@ -1,6 +1,9 @@
 <!-- Search bar -->
 <template>
-  <form @submit.prevent="onSearch" class="flex items-center gap-2 w-full max-w-xl mx-auto">
+  <form 
+    @submit.prevent="onSearch"
+    class="flex items-center gap-2 w-full max-w-xl mx-auto"
+  >
     <input
       v-model="searchTerm"
       type="text"
@@ -9,6 +12,7 @@
     />
     <button
       type="submit"
+      aria-label="Search button"
       class="px-4 py-2 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
     >
       Search

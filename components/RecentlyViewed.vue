@@ -1,12 +1,16 @@
 <!-- Recently viewed shown at top of homepage -->
 <template>
-  <div v-if="viewedMoviesStore.viewed.length" class="mt-8">
+  <div 
+    v-if="viewedMoviesStore.viewed.length" 
+    class="mt-8"
+  >
     <h3 class="text-xl font-bold mb-4">Recently Viewed</h3>
 
     <div class="relative">
       <!-- Left Arrow -->
       <button
         @click="scrollLeft"
+        aria-label="Previous recently viewed"
         :class="[
           'absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black/20 dark:bg-white/80 rounded p-2 shadow hover:scale-105 transition xl:hidden block',
           canScrollLeft ? 'opacity-100 pointer-events-auto' : 'opacity-20 pointer-events-none'
@@ -18,6 +22,7 @@
       <!-- Right Arrow -->
       <button
         @click="scrollRight"
+        aria-label="Next recently viewed"
         :class="[
           'absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black/20 dark:bg-white/80 rounded p-2 shadow hover:scale-105 transition xl:hidden block',
           canScrollRight ? 'opacity-100 pointer-events-auto' : 'opacity-20 pointer-events-none'

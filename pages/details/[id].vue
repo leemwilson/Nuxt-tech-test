@@ -3,6 +3,7 @@
     <!-- Back Button -->
     <button
       @click="goBack"
+      aria-label="Return to search"
       class="mb-4 text-sm bg-dark dark:bg-light text-gray-200 dark:text-gray-400 hover:bg-gray-600 dark:hover:bg-gray-200 font-semibold flex items-center gap-1 transition border rounded px-4 py-2"
     >
       <i class="fas fa-arrow-left"></i>
