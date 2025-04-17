@@ -24,7 +24,7 @@
         <label class="block font-semibold mb-1">Email *</label>
         <input
           v-model.trim="form.email"
-          type="email"
+          type="text"
           class="w-full p-2 border rounded focus:outline text-dark"
           :class="[
             errors.email ? 'border-red-500' : 'border-gray-300'
@@ -66,11 +66,13 @@
 
     <!-- Toast Notification -->
     <div
-      v-if="toast.show"
+      v-for="(toast, index) in toasts"
+      :key="toast.id"
       :class="[
-        'fixed bottom-4 right-4 px-4 py-2 rounded shadow-md text-white z-50 transition-opacity duration-300',
+        'fixed right-4 px-4 py-2 rounded shadow-md text-white z-50 transition-all duration-300',
         toast.success ? 'bg-green-600' : 'bg-red-600'
       ]"
+      :style="{ bottom: `${4 + index * 60}px` }"
     >
       {{ toast.message }}
     </div>
@@ -93,7 +95,8 @@ const errors = reactive({
   message: false
 })
 
-const toast = ref({ show: false, message: '', success: true })
+const toasts = ref<{ id: number; message: string; success: boolean }[]>([])
+let toastId = 0
 
 // General validation for contact form, could do with being more refined with time
 const validate = () => {
@@ -121,11 +124,19 @@ const resetForm = () => {
 
 // Shows overlay bottom right for success/failure
 const showToast = (message: string, success = true) => {
-  toast.value = { show: true, message, success }
+  const id = toastId++
+  toasts.value.push({ id, message, success })
+
+  // If there are more than 3 toasts, remove the oldest one
+  if (toasts.value.length > 3) {
+    toasts.value.shift()
+  }
+
   setTimeout(() => {
-    toast.value.show = false
+    toasts.value = toasts.value.filter(t => t.id !== id)
   }, 3000)
 }
+
 
 // Handles dummy subm
 const handleSubmit = () => {
@@ -134,12 +145,18 @@ const handleSubmit = () => {
   if (isValid) {
     showToast('Form submitted successfully!', true)
     resetForm()
-  } else if (errors.fullName) {
+  }
+  
+  if (errors.fullName) {
     showToast('Please make sure to enter a valid name, numbers are not allowed.', false)
-  } else if (errors.email) {
+  }
+  
+  if (errors.email) {
     showToast('Please make sure to enter a valid email.', false)
-  } else {
-    showToast('Please make sure all mandatory fields are filled correctly.', false)
+  }
+  
+  if (errors.message) {
+    showToast('Please make sure the message section is not blank.', false)
   }
 }
 </script>
