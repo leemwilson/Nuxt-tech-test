@@ -53,4 +53,4 @@ git clone https://github.com/leemwilson/nuxt-tech-test.git
 cd nuxt-tech-test
 npm install
 npm run build
-npm run preview
+npm run start
